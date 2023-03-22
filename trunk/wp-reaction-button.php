@@ -33,7 +33,11 @@ if( !defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// define
+/**
+ *
+ * Define Block
+ *
+ */
 
 define( 'WP_REACTION_BUTTON_PLUGIN_VERSION', '1.0.0' );
 define( 'WP_REACTION_BUTTON_PLUGIN_FILE', __FILE__ );
@@ -41,7 +45,11 @@ define( 'WP_REACTION_BUTTON_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WP_REACTION_BUTTON_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WP_REACTION_BUTTON_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-// load text domain
+/**
+ *
+ * Function for Loading Text Domain
+ *
+ */
 
 function wp_reaction_button_load_textdomain() {
 
