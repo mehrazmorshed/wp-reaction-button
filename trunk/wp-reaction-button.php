@@ -57,4 +57,44 @@ function wp_reaction_button_load_textdomain() {
 }
 add_action( 'init', 'wp_reaction_button_load_textdomain' );
 
-// main function
+/**
+ *
+ * Main Function
+ *
+ */
+
+
+
+
+
+/**
+ *
+ * Register Activation Hook for Admin Notification
+ *
+ */
+
+
+function wp_reaction_button_notice_hook() {
+
+    set_transient( 'wp-reaction-button-notification', true, 5 );
+}
+register_activation_hook( __FILE__, 'wp_reaction_button_notice_hook' );
+
+// notification function
+
+function wp_reaction_button_notification() {
+
+    if( get_transient( 'wp-reaction-button-notification' ) ) {
+
+        ?>
+        <div class="updated notice is-dismissible">
+            <p>
+                <?php esc_attr_e( 'Thank you for installing WP Reaction Button plugin!', 'wp-reaction-button' ); ?>        
+            </p>
+        </div>
+        <?php
+        delete_transient( 'wp-reaction-button-notification' );
+    }
+}
+add_action( 'admin_notices', 'wp_reaction_button_notification' ); 
+
