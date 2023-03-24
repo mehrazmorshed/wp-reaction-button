@@ -2,12 +2,12 @@
 
 /**
  *
- * WP Reaction Button - uninstall script
+ * WP Reaction Button Uninstall Script
  * @package WPReactionButton
  * Author: Mehraz Morshed
  * Copyright 2023 WPDeveloper
  *
- **/
+ */
 
 // do not call this file directly
 if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
