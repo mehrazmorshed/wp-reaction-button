@@ -16,7 +16,11 @@ if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 // uninstallation script
 
-
+/**
+ *
+ * uninstallation functions goes here
+ *
+ **/
 
 // admin feedback script
 
