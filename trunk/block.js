@@ -21,7 +21,7 @@ wp.blocks.registerBlockType("ourplugin/wp-reaction-button", {
 
 /**
  * 
- * I borrowed the few line of codes above from LearnWebCode Academy and
+ * I borrowed the few line of codes below from LearnWebCode Academy and
  * then re-writed according to my requirements, and I can explain it.
  * The copyright of original code goes to LearnWebCode Academy.
  * 
