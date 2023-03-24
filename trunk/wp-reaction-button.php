@@ -27,74 +27,58 @@
  */
 
 // do not call the file directly
-
 if( !defined( 'ABSPATH' ) ) {
-
     exit;
 }
 
-/**
- *
- * Define Block
- *
- */
-
+// define
 define( 'WP_REACTION_BUTTON_PLUGIN_VERSION', '1.0.0' );
 define( 'WP_REACTION_BUTTON_PLUGIN_FILE', __FILE__ );
 define( 'WP_REACTION_BUTTON_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WP_REACTION_BUTTON_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WP_REACTION_BUTTON_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-/**
- *
- * Function for Loading Text Domain
- *
- */
-
+// load text domain for translation
 function wp_reaction_button_load_textdomain() {
-
     load_plugin_textdomain( 'wp-reaction-button', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
 add_action( 'init', 'wp_reaction_button_load_textdomain' );
 
-/**
- *
- * Main Function
- *
- */
-
-
-
-
-
-/**
- *
- * Register Activation Hook for Admin Notification
- *
- */
-
-
-function wp_reaction_button_notice_hook() {
-
-    set_transient( 'wp-reaction-button-notification', true, 5 );
+// enqueue css files
+function wp_reaction_button_enqueue_style() {
+    wp_enqueue_style('wp-reaction-button-style', plugins_url('css/wp-reaction-button-style.css', __FILE__));
 }
-register_activation_hook( __FILE__, 'wp_reaction_button_notice_hook' );
+add_action( "wp_enqueue_scripts", "wp_reaction_button_enqueue_style" );
 
-// notification function
+// enqueue jquery and javascript files
+function wp_reaction_button_enqueue_script() {
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('wp-reaction-button-script', plugins_url('js/wp-reaction-button-script.js', __FILE__), array(), '1.0.0', 'true');
+}
+add_action( "wp_enqueue_scripts", "wp_reaction_button_enqueue_script" );
 
-function wp_reaction_button_notification() {
-
-    if( get_transient( 'wp-reaction-button-notification' ) ) {
-
-        ?>
-        <div class="updated notice is-dismissible">
-            <p>
-                <?php esc_attr_e( 'Thank you for installing WP Reaction Button plugin!', 'wp-reaction-button' ); ?>        
-            </p>
-        </div>
-        <?php
-        delete_transient( 'wp-reaction-button-notification' );
+// main function
+function wp_reaction_button_main( $content ) {
+    // check the user is logged in or not
+    if ( is_user_logged_in() ) {
+        // check to display icons only in single posts and pages
+        if ( is_single() || is_page() ) {
+            // setting up smile icon
+            $smile = '<img class="button" id="smile" onclick="smileFunction()" style="width:48px;" src="' .  plugin_dir_url( __FILE__ ) . 'img/smile.png">';
+            // setting up straight icon
+            $straight = '<img class="button" id="straight" onclick="straightFunction()" style="width: 48px;" src="' .  plugin_dir_url( __FILE__ ) . 'img/straight.png">';
+            // setting up sad icon
+            $sad = '<img class="button" id="sad" onclick="sadFunction()" style="width: 48px;" src="' .  plugin_dir_url( __FILE__ ) . 'img/sad.png">';
+            // combine all three icons to display after the content
+            $content .= '<div class="reaction">' . $smile . $straight . $sad . '</div>';
+        }
+        return $content;
+    }
+    // diaplay message instead of reaction icons for logged out / guest users
+    else {
+        $guest= '<div style="border: 2px red dotted;">You need to get Logged-in to give a reaction using <strong>WP Reaction Button</strong></div>';
+        $content .= $guest;
+        return $content;
     }
 }
-add_action( 'admin_notices', 'wp_reaction_button_notification' ); 
-
+add_filter( 'the_content', 'wp_reaction_button_main' );
