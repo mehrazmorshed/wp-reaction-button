@@ -9,13 +9,16 @@
  *
  **/
 
+// do not call this file directly
 if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
   exit;
 }
 
-// uninstallation functions and hooks should be here
+// uninstallation script
 
-// admin uninstallation feedback script
+
+
+// admin feedback script
 
 /**
  *
