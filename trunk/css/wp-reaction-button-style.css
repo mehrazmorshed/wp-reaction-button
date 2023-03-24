@@ -1,1 +1,42 @@
+/**
+ *
+ * WP Reaction Button Styles
+ * @package WPReactionButton
+ * Author: Mehraz Morshed
+ * Copyright 2023 WPDeveloper
+ *
+ */
 
+@charset "UTF-8";
+
+/* img padding */
+/*
+img#sm,
+img#st,
+img#sd {
+	padding: 5px;
+}
+
+img#sm:hover,
+img#st:hover,
+img#sd:hover {
+	padding: 0;
+}
+*/
+
+.reaction {
+	background-color: #ccc;
+}
+
+.button{
+	cursor: pointer;
+	padding: 5px;
+}
+
+.button:before {
+	content: '0';
+}
+
+.button-active {
+	padding: 0;
+}
