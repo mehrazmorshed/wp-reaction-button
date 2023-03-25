@@ -9,34 +9,46 @@
 
 @charset "UTF-8";
 
-/* img padding */
-/*
-img#sm,
-img#st,
-img#sd {
-	padding: 5px;
-}
-
-img#sm:hover,
-img#st:hover,
-img#sd:hover {
-	padding: 0;
-}
-*/
-
 .reaction {
-	background-color: #ccc;
+	background-color: #fff;
 }
 
-.button{
+.button {
+	padding: 15px;
+}
+.button:hover {
 	cursor: pointer;
+	border: 1px dotted blue;
+}
+
+.big {
 	padding: 5px;
 }
 
-.button:before {
-	content: '0';
+.small {
+	padding: 15px;
+	pointer-events: none;
 }
 
-.button-active {
-	padding: 0;
+.increase {
+	content: '1';
+}
+
+.count-reaction:before {
+	content: '0 reaction';
+}
+
+.count-smile:before {
+	content: '1 smile';
+	font-size: 16px;
+}
+
+.count-straight:before {
+	content: '1 straight';
+	font-size: 16px;
+}
+
+.count-sad:before {
+	content: '1 sad';
+	font-size: 16px;
 }
